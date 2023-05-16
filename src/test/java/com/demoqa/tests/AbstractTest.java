@@ -8,5 +8,6 @@ public class AbstractTest {
     @BeforeAll
     static void configuration() {
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.pageLoadTimeout  = 60000;
     }
 }

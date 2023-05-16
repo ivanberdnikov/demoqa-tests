@@ -1,5 +1,23 @@
 plugins {
-    id 'java-library'
+    id 'java'
+    id 'io.qameta.allure' version '2.10.0'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+allure {
+    report {
+        version.set("2.19.0")
+    }
+    adapter { // отвечает за появление папочки build/allure-results
+        aspectjWeaver.set(true) //обработка аннотации @Step
+        frameworks {
+            junit5 { //название фреймворка
+                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
+            }
+        }
+    }
 }
 
 repositories {
@@ -17,6 +35,7 @@ dependencies{
 
 test {
     useJUnitPlatform()
+    systemProperties(System.getProperties())
 }
 
 tasks.withType(JavaCompile){
